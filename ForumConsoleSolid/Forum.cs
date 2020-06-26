@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ForumConsoleSolid.Commands.Exceptions;
+using ForumConsoleSolid.Commands.Factories;
 using ForumConsoleSolid.Contracts;
 
 namespace ForumConsoleSolid
@@ -32,12 +34,50 @@ namespace ForumConsoleSolid
         public IList<IQuestion> Questions { get; private set; }
         public IList<IAnswer> Answers { get; private set; }
         public IQuestion CurrentQuestion { get; set; }
-        public IUser CurrentUser { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public IUser CurrentUser { get; set; }
         public StringBuilder Output { get; private set; }
-        public void Run()
+        public virtual void Run()
+        {
+            this.Setup();
+
+            while (this.HasStarted)
+            {
+                this.ExecuteCommandLoop();
+            }
+        }
+
+        protected virtual void ExecuteCommandLoop()
         {
             this.Output.Clear();
             var inputCommand = Console.ReadLine();
+
+            try
+            {
+                IExecutable command = CommandFactory.Create(inputCommand, this);
+                command.Execute();
+            }
+            catch (CommandException ex)
+            {
+                this.Output.AppendLine(ex.Message);
+            }
+            catch (InvalidOperationException)
+            {
+                this.Output.AppendLine(Messages.InvalidCommand);
+            }
+
+            Console.Write(this.Output);
+        }
+
+        protected virtual void Setup()
+        {
+            string registerAdminCommand = string.Format(
+               "register {0} {1} {2} ADMINISTRATOR",
+               DefaultAdminUser,
+               DefaultAdminPassword,
+               DefaultAdminEmail);
+
+            IExecutable command = CommandFactory.Create(registerAdminCommand, this);
+            command.Execute();
         }
     }
 }
