@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ForumConsoleSolid.Contracts;
 
-namespace ForumConsoleSolid.Entities
+namespace ForumConsoleSolid.Users.Entities
 {
     public class User : IUser
     {

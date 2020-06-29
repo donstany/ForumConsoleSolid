@@ -15,7 +15,7 @@ namespace ForumConsoleSolid.Commands.Factories
             string commandName = data[0].ToLower();
 
             var commandClass = Assembly.GetExecutingAssembly().GetTypes()
-                               .Where(t => t.IsClass)
+                               .Where(t => t.IsClass /*&& t.Namespace == typeof(CommandFactory).Namespace*/)
                                .Where(t => t.Name.EndsWith(CommandSuffix))
                                    .First(t => t.Name
                                           .Replace(CommandSuffix, string.Empty)

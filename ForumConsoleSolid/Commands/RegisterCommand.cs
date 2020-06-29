@@ -2,6 +2,7 @@
 using ForumConsoleSolid.Commands.Exceptions;
 using ForumConsoleSolid.Contracts;
 using ForumConsoleSolid.Entities;
+using ForumConsoleSolid.Users.Entities;
 using ForumConsoleSolid.Utility;
 
 namespace ForumConsoleSolid.Commands
@@ -24,7 +25,7 @@ namespace ForumConsoleSolid.Commands
             }
 
             User user;
-
+            //register admin -> register gosho 123 gosh@a.bg administrator
             if (this.Data.Count > 4)
             {
                 var role = this.Data[4];
@@ -44,7 +45,7 @@ namespace ForumConsoleSolid.Commands
                         break;
                 }
             }
-            else
+            else // register pesho 123 12@12.com
             {
                 user = new User(users.Count + 1, username, password, email);
             }

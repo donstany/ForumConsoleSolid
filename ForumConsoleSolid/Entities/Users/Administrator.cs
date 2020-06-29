@@ -1,6 +1,7 @@
 ﻿using ForumConsoleSolid.Contracts;
+using ForumConsoleSolid.Entities;
 
-namespace ForumConsoleSolid.Entities
+namespace ForumConsoleSolid.Users.Entities
 {
     public class Administrator : User, IAdministrator
     {
