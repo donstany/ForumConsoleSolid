@@ -15,9 +15,9 @@ namespace ForumConsoleSolid.Commands
         public override void Execute()
         {
             var users = this.Forum.Users;
-            string username = this.Data[1];
-            string password = PasswordUtility.Hash(this.Data[2]);
-            string email = this.Data[3];
+            string username = this.CommandToken[1];
+            string password = PasswordUtility.Hash(this.CommandToken[2]);
+            string email = this.CommandToken[3];
 
             if (users.Any(u => u.Username == username || u.Email == email))
             {
@@ -26,9 +26,9 @@ namespace ForumConsoleSolid.Commands
 
             User user;
             //register admin -> register gosho 123 gosh@a.bg administrator
-            if (this.Data.Count > 4)
+            if (this.CommandToken.Count > 4)
             {
-                var role = this.Data[4];
+                var role = this.CommandToken[4];
 
                 switch (role.ToLower())
                 {

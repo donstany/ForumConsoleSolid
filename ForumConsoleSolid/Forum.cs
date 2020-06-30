@@ -38,7 +38,7 @@ namespace ForumConsoleSolid
         public StringBuilder Output { get; private set; }
         public virtual void Run()
         {
-            this.Setup();
+            this.InitialSetup();
 
             while (this.HasStarted)
             {
@@ -68,7 +68,7 @@ namespace ForumConsoleSolid
             Console.Write(this.Output);
         }
 
-        protected virtual void Setup()
+        protected virtual void InitialSetup()
         {
             string registerAdminCommand = string.Format(
                "register {0} {1} {2} ADMINISTRATOR",

@@ -19,8 +19,8 @@ namespace ForumConsoleSolid.Commands
                 throw new CommandException(Messages.AlreadyLoggedIn);
             }
 
-            string username = this.Data[1];
-            string password = PasswordUtility.Hash(this.Data[2]);
+            string username = this.CommandToken[1];
+            string password = PasswordUtility.Hash(this.CommandToken[2]);
 
             IUser user = this.Forum.Users
                 .FirstOrDefault(u => u.Username == username);

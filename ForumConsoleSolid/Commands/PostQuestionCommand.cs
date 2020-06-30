@@ -14,8 +14,8 @@ namespace ForumConsoleSolid.Commands
         {
             base.Execute();
 
-            string title = this.Data[1];
-            string body = this.Data[2];
+            string title = this.CommandToken[1];
+            string body = this.CommandToken[2];
 
             var newQuestion = new Question(this.Forum.Questions.Count + 1, body, this.Forum.CurrentUser, title);
 
@@ -24,6 +24,5 @@ namespace ForumConsoleSolid.Commands
             this.Forum.Output.AppendLine(
                 string.Format(Messages.PostQuestionSuccess, newQuestion.Id));
         }
-
     }
 }

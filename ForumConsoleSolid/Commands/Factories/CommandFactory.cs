@@ -26,7 +26,7 @@ namespace ForumConsoleSolid.Commands.Factories
 
             foreach (var field in data)
             {
-                command.Data.Add(field);
+                command.CommandToken.Add(field);
             }
 
             return (IExecutable)command;

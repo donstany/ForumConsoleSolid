@@ -7,7 +7,8 @@ namespace ForumConsoleSolid
     {
         static void Main(string[] args)
         {
-            IForum forum = new Forum();
+            //IForum forum = new Forum();
+            IForum forum = new ExtendedForum();
             forum.Run();
         }
     }

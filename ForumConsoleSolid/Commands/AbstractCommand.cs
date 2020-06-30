@@ -5,7 +5,7 @@ namespace ForumConsoleSolid.Commands
 {
     public abstract class AbstractCommand : ICommand
     {
-        public readonly List<string> Data = new List<string>();
+        public readonly List<string> CommandToken = new List<string>();
         protected AbstractCommand(IForum forum)
         {
             this.Forum = forum;
